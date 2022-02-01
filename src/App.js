@@ -1,14 +1,22 @@
 import react from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import From from "./components/From";
 import TodoList from "./components/TodoList";
 import "./App.css";
 
 function App() {
+
+  
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [fillerTodos,setFillerTodos]=useState([])
+
+  useEffect(()=>{
+
+filterHandler()
+
+  },[todos,status])
 
   const filterHandler=()=>{
    switch(status){
@@ -35,10 +43,10 @@ function App() {
         todos={todos}
         setTodos={setTodos}
         setInputText={setInputText}
-        
         setStatus={setStatus}
+        
       />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} fillerTodos={fillerTodos} />
     </div>
   );
 }
